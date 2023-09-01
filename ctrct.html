@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Meta 태그 및 CSS, JS 라이브러리 -->
+<link rel="stylesheet" href="cntrsty.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title>입력값 받기</title>
+</head>
+
+<body>
+  <!-- 계약서 섹션 -->
+  <section>
+    <h2>계약서</h2>
+    <textarea readonly id="contract-text"></textarea>
+  </section>
+
+  <!-- 개인정보 입력 섹션 -->
+  <section>
+    <h2>개인정보 입력</h2>
+    <form autocomplete="on">
+      <!-- 이름, 주민등록번호 입력 -->
+      <label for="name">이름:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="socialnum">주민등록번호:</label>
+      <input type="text" id="socialnum" name="socialnum" pattern="\d{6}-\d{7}" required>
+      
+      <!-- 주소 입력 -->
+      <label for="address">주소:</label>
+      <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+      <input type="text" id="address" name="address" required>
+      <input type="text" id="detailAddress" placeholder="상세주소" required>
+      <input type="text" id="postcode" placeholder="우편번호" style="display: none;">
+      <input type="text" id="roadAddress" placeholder="도로명주소" style="display: none;">
+      <input type="text" id="jibunAddress" placeholder="지번주소" style="display: none;">
+      <span id="guide" style="color:#999;display:none"></span>
+      <input type="text" id="extraAddress" placeholder="참고항목" style="display: none;">
+      
+      <!-- 이메일, 연락처 입력 -->
+      <label for="email">이메일:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="contact">연락처:</label>
+      <input type="tel" id="contact" name="contact" required>
+
+      <!-- 서명란 -->
+      <label for="signature">서명란:</label>
+      <div id="canvasContainer">
+        <div id="canvasWrapper">
+          <canvas id="myCanvas" width="250" height="150" style="border: 3px solid black;"></canvas>
+        </div>
+      </div>
+
+      <!-- 동의 체크박스 -->
+      <div class="checkbox-container">
+        <label for="agree">위 내용을 읽고 동의합니다.</label>
+        <input type="checkbox" id="agree">
+      </div>
+      <p id="redsign">서명을 한 후, 박스에 체크해 주세요.</p>
+    </form>
+
+    <!-- 버튼 -->
+    <div class="button-container">
+      <button type="button" id="eraseButton">서명 재입력</button>
+      <button type="submit" id="submitButton" disabled>제출</button>
+    </div>
+
+  </section>
+
+  <!-- 각종 스크립트 -->
+  <script src="contract.js"></script>
+  <script src="mainScript.js"></script>
+  <script src="ApiScript.js"></script>
+  <script src="addDaumApi.js"></script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</body>
+</html>

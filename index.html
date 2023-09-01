@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="stylesheet" href="idxsty.css">
+  <meta charset="UTF-8">
+  <title>Flask 애니메이션</title>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    button {
+      background: linear-gradient(to bottom, #c8e6c9, #a5d6a7);
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 20px;
+      margin: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease-in-out;
+    }
+
+    button:hover {
+      transform: translateY(-10px);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <button id="manager-button">관리자 로그인</button>
+    <button id="worker-button">근로자 로그인</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // 관리자 로그인 버튼 애니메이션
+    const managerButton = document.querySelector("#manager-button");
+    const managerButtonAnimation = anime({
+      targets: managerButton,
+      opacity: [0, 1],
+      translateY: [-150, 0],
+      duration: 1500,
+      easing: "easeInOutQuad",
+    });
+
+    // 근로자 로그인 버튼 애니메이션
+    const workerButton = document.querySelector("#worker-button");
+    const workerButtonAnimation = anime({
+      targets: workerButton,
+      opacity: [0, 1],
+      translateY: [150, 0],
+      duration: 1500,
+      easing: "easeInOutQuad",
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 페이지가 로드되면 애니메이션을 시작합니다.
+      managerButtonAnimation.play();
+      workerButtonAnimation.play();
+
+      // 버튼 클릭 이벤트 설정
+      managerButton.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+
+      workerButton.addEventListener("click", () => {
+        window.location.href = "feedback.html";
+      });
+    });
+  </script>
+</body>
+</html>
