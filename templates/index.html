@@ -75,10 +75,10 @@
 
       // 버튼 클릭 이벤트 설정
       managerButton.addEventListener("click", () => {
-        window.location.href = "login";
+        window.location.href = "{{url_for('login')}}";
       });
       workerButton.addEventListener("click", () => {
-        window.location.href = "feed";
+        window.location.href = "{{url_for('feed')}}";
       });
     });
   </script>
