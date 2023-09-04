@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/idxsty.css') }}">
+  <meta name ="google-signin-client_id" content="1043119648115-o48djrnuu4m5vrnv8nvt7jp9noi4uh1o.apps.googleusercontent.com">
+  <meta charset="UTF-8">
+  <title>SigForAll.net</title>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    button {
+      background: linear-gradient(to bottom, #c8e6c9, #a5d6a7);
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 20px;
+      margin: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease-in-out;
+    }
+
+    button:hover {
+      transform: translateY(-10px);
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="container">
+    <button id="GgCustomLogin">관리자 로그인</button>
+    <button id="worker-button">근로자 로그인</button>
+  </div>
+  
+  <script src="https://apis.google.com/js/platform.js?onload=init" async defer>
+    //구글 api 사용을 위한 스크립트
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+  
+    // 관리자 로그인 버튼 애니메이션
+    const managerButton = document.querySelector("#GgCustomLogin");
+    const managerButtonAnimation = anime({
+      targets: managerButton,
+      opacity: [0, 1],
+      translateY: [-150, 0],
+      duration: 1500,
+      easing: "easeInOutQuad",
+    });
+
+    // 근로자 로그인 버튼 애니메이션
+    const workerButton = document.querySelector("#worker-button");
+    const workerButtonAnimation = anime({
+      targets: workerButton,
+      opacity: [0, 1],
+      translateY: [150, 0],
+      duration: 1500,
+      easing: "easeInOutQuad",
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 페이지가 로드되면 애니메이션을 시작합니다.
+      managerButtonAnimation.play();
+      workerButtonAnimation.play();
+
+      // 버튼 클릭 이벤트 설정
+      
+      workerButton.addEventListener("click", () => {
+        window.location.href = "{{url_for('feed')}}";
+      });
+    });
+    
+      managerButton.addEventListener("click", () => {
+          // login.html 은 삭제되었으므로, 구글 로그인 API를 직접 호출합니다.
+          // 구글 로그인 API를 호출하기 위해 필요한 라이브러리를 추가합니다.
+          const gapi = window.gapi;
+          const auth2 = gapi.auth2;
+  
+          // 구글 로그인 API를 초기화합니다.
+          gapi.load('auth2', () => {
+            gapi.auth2.init();
+  
+            // 로그인 옵션을 설정합니다.
+            const options = new gapi.auth2.SigninOptionsBuilder();
+            options.setPrompt('select_account');
+            options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+  
+            // 로그인 버튼을 클릭하면 로그인 인스턴스를 호출합니다.
+            gapi.auth2.getAuthInstance().signIn(options);
+        });
+      });
+    
+  function init() {
+	  gapi.load('auth2', function() {
+  		gapi.auth2.init();
+  		options = new gapi.auth2.SigninOptionsBuilder();
+  		options.setPrompt('select_account');
+          // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+  		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+          // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+          // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+  		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+	  })
+  }  
+    
+  function onSignIn(googleUser) {
+  	var access_token = googleUser.getAuthResponse().access_token
+  	$.ajax({
+      	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+  		url: 'https://people.googleapis.com/v1/people/me'
+          // key에 자신의 API 키를 넣습니다.
+  		, data: {personFields:'birthdays', key:'AIzaSyCkfH0PlyIToGKoItEZLDFf-kT4LBJeO2o', 'access_token': access_token}
+  		, method:'GET'
+  	})
+  	.done(function(e){
+          //프로필을 가져온다.
+  		var profile = googleUser.getBasicProfile();
+  		console.log(profile)
+  	})
+  	.fail(function(e){
+  		console.log(e);
+  	})
+  }
+  
+  function onSignInFailure(t){		
+  	console.log(t);
+  }
+  </script>
+</body>
+</html>
