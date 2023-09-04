@@ -3,8 +3,8 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def login():
+    return render_template('login.html')
 
 @app.route('/static/css/idxsty.css')
 def static_file():
@@ -20,4 +20,3 @@ def feed():
 
 if __name__ == '__main__':
     app.run()
-
