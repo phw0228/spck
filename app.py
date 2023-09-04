@@ -17,11 +17,11 @@ def index():
 def static_file():
     return send_file('static/css/idxsty.css')
 
-@app.route('/templates/login.html')
+@app.route('/login.html')
 def login():
     return render_template('login.html')
 
-@app.route('/templates/feed.html')
+@app.route('/feed.html')
 def feed():
     return render_template('feed.html')
 
