@@ -75,8 +75,7 @@
 
       // 버튼 클릭 이벤트 설정
       managerButton.addEventListener("click", () => {
-        // login.html의 로그인 버튼을 클릭합니다.
-        document.querySelector("#GgCustomLogin").click();
+        window.location.href = "{{url_for('login')}}";
       });
       workerButton.addEventListener("click", () => {
         window.location.href = "{{url_for('feed')}}";

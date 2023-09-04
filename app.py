@@ -20,7 +20,6 @@ def feed():
 
 @app.route('/ctrct.html')
 def ctrct():
-    # 이 라인의 들여쓰기를 맞추어야 합니다.
     return send_file('static/css/cntrsty.css')
 
 if __name__ == '__main__':
