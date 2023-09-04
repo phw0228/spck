@@ -2,13 +2,6 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-#@app.route("/")
-#def homepage():
-#    if session.get('logged_in') :
-#        return render_template('loggedin.html')
-#    else:
-#        return render_template('index.html')
-#
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -24,6 +17,10 @@ def login():
 @app.route('/feed.html')
 def feed():
     return render_template('feed.html')
+
+@app.route('/ctrct.html')
+def ctrct():
+    return render_template('ctrct.html')
 
 if __name__ == '__main__':
     app.run()
