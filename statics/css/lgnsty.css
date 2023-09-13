@@ -1,0 +1,22 @@
+.header a {
+  color: red;
+  font-size: 20px;
+}
+
+.box-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  margin: 10px;
+}
+
+.big-box {
+  width: 500px;
+  height: 500px;
+  background-color: green;
+}

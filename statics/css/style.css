@@ -1,0 +1,51 @@
+body {
+  background-color: lightgray;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+}
+
+main {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+footer {
+  text-align: center;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination li {
+  padding: 5px;
+  margin: 0 5px;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.pagination li.active {
+  background-color: #ccc;
+}

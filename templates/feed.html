@@ -1,42 +1,56 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>피드백 게시판</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>learn-bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-    <h1>피드백 게시판</h1>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
-    <form action="/feedback" method="post">
-        <input type="text" name="name" placeholder="이름">
-        <input type="text" name="email" placeholder="이메일">
-        <textarea name="feedback" placeholder="피드백"></textarea>
-        <input type="submit" value="제출">
-    </form>
+<main role="main" class="container bootdey.com">
+  <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-blue rounded box-shadow">
+    <img class="mr-3" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="48" height="48">
+    <div class="lh-100">
+      <h6 class="mb-0 text-white lh-100">John Doe</h6>
+      <small>Messages</small>
+    </div>
+  </div>
 
-    <script>
-        $(function() {
-            // 피드백을 제출하면
-            $('#feedbackForm').submit(function(event) {
-                // 이름, 이메일, 피드백을 ajax로 전송
-                $.ajax({
-                    url: '/feedback',
-                    type: 'POST',
-                    data: $(this).serialize(),
-                })
-                    .done(function(data) {
-                        // 피드백이 정상적으로 제출되었음을 알리는 메시지 출력
-                        alert(data);
-                    })
-                    .fail(function() {
-                        // 피드백을 제출하는 데 실패했음을 알리는 메시지 출력
-                        alert('피드백을 제출하는 데 실패했습니다.');
-                    });
-
-                // 제출 버튼을 비활성화
-                $('#submitButton').prop('disabled', true);
-            });
-        });
-    </script>
-</body>
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+    <div class="media text-muted pt-3">
+      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">@username</strong>
+        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="mr-2 rounded" width="32" height="32">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">@username</strong>
+        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="" class="mr-2 rounded" width="32" height="32">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">@username</strong>
+        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" class="mr-2 rounded" width="32" height="32">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">@username</strong>
+        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      </p>
+    </div>
+    <small class="d-block text-right mt-3">
+      <a href="#">All messages</a>
+    </small>
+  </div>
+</main>
 </html>
