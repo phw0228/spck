@@ -1,92 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/idxsty.css') }}">
-  <meta name ="google-signin-client_id" content="1043119648115-o48djrnuu4m5vrnv8nvt7jp9noi4uh1o.apps.googleusercontent.com">
-  <meta charset="UTF-8">
   <title>SigForAll.net</title>
-  <style>
-    body {
-      background-color: #f5f5f5;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    #container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    button {
-      background: linear-gradient(to bottom, #c8e6c9, #a5d6a7);
-      color: #fff;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 20px;
-      margin: 10px;
-      cursor: pointer;
-      font-size: 18px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.5s ease-in-out;
-    }
-
-    button:hover {
-      transform: translateY(-10px);
-    }
-  </style>
+  <link rel="stylesheet" href="idxsty.css">
+  <script src="idxjs.js"></script>
 </head>
+
 <body>
   <div id="container">
     <button id="manager-button">관리자 로그인</button>
     <button id="worker-button">근로자 로그인</button>
   </div>
-  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-  <script>
-    // 관리자 로그인 버튼 애니메이션
-    const managerButton = document.querySelector("#manager-button");
-    const managerButtonAnimation = anime({
-      targets: managerButton,
-      opacity: [0, 1],
-      translateY: [-150, 0],
-      duration: 1500,
-      easing: "easeInOutQuad",
-    });
-
-    // 근로자 로그인 버튼 애니메이션
-    const workerButton = document.querySelector("#worker-button");
-    const workerButtonAnimation = anime({
-      targets: workerButton,
-      opacity: [0, 1],
-      translateY: [150, 0],
-      duration: 1500,
-      easing: "easeInOutQuad",
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      // 페이지가 로드되면 애니메이션을 시작합니다.
-      managerButtonAnimation.play();
-      workerButtonAnimation.play();
-
-      // 버튼 클릭 이벤트 설정
-      workerButton.addEventListener("click", () => {
-        window.location.href = "{{url_for('feed')}}";
-      });
-
-      // 관리자 로그인 버튼 클릭 이벤트
-      managerButton.addEventListener("click", () => {
-        // 구글 로그인 API를 초기화합니다.
-        gapi.load("auth2", () => {
-          gapi.auth2.init();
-          gapi.auth2.getAuthInstance().signIn();
-        });
-      });
-    });
-  </script>
 </body>
+
 </html>

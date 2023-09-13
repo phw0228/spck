@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/idxsty.css') }}">
-
+  <meta name ="google-signin-client_id" content="1043119648115-o48djrnuu4m5vrnv8nvt7jp9noi4uh1o.apps.googleusercontent.com">
   <meta charset="UTF-8">
   <title>SigForAll.net</title>
   <style>
@@ -45,9 +45,9 @@
     <button id="manager-button">관리자 로그인</button>
     <button id="worker-button">근로자 로그인</button>
   </div>
-
+  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-<script>
+  <script>
     // 관리자 로그인 버튼 애니메이션
     const managerButton = document.querySelector("#manager-button");
     const managerButtonAnimation = anime({
@@ -74,11 +74,17 @@
       workerButtonAnimation.play();
 
       // 버튼 클릭 이벤트 설정
-      managerButton.addEventListener("click", () => {
-        window.location.href = "{{url_for('login')}}";
-      });
       workerButton.addEventListener("click", () => {
         window.location.href = "{{url_for('feed')}}";
+      });
+
+      // 관리자 로그인 버튼 클릭 이벤트
+      managerButton.addEventListener("click", () => {
+        // 구글 로그인 API를 초기화합니다.
+        gapi.load("auth2", () => {
+          gapi.auth2.init();
+          gapi.auth2.getAuthInstance().signIn();
+        });
       });
     });
   </script>
