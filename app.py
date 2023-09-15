@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -26,11 +26,18 @@ def feed():
 def ctrct():
     return send_file('static/css/cntrsty.css')
 
-if __name__ == '__main__':
-    app.run()
-    
 @app.route('/write_ok.php', methods=['POST'])
 def write_ok():
     # write_ok.php를 실행합니다.
     return os.system('php write_ok.php')
 
+@app.route('/', methods=['POST'])
+def index_post():
+    title = request.form['title']
+    content = request.form['content']
+
+    # write.php를 실행합니다.
+    return os.system('php write.php')
+
+if __name__ == '__main__':
+    app.run()
