@@ -5,10 +5,10 @@ app = Flask(__name__)
 
 def connect_db():
     connection = pymysql.connect(
-        host="localhost",
+        host="mysql-container",
         user="root",
-        password="password",
-        database="test"
+        password="0228",
+        database="board"
     )
     return connection
 
