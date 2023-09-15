@@ -30,5 +30,25 @@
       {% endfor %}
     </tbody>
   </table>
+
+  <script>
+    // 이름과 나이를 입력하면 MySQL 컨테이너에 데이터를 저장합니다.
+    document.querySelector("form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // 이름과 나이를 가져옵니다.
+      var name = document.querySelector("input[name='name']").value;
+      var age = document.querySelector("input[name='age']").value;
+
+      // 데이터를 MySQL 컨테이너에 저장합니다.
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/input");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify({
+        name: name,
+        age: age
+      }));
+    });
+  </script>
 </body>
 </html>
