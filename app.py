@@ -15,7 +15,7 @@ def login():
     return render_template('login.html')
     
 @app.route('/write.html')
-def login():
+def write():
     return render_template('write.html')
 
 @app.route('/feed.html')
