@@ -28,3 +28,9 @@ def ctrct():
 
 if __name__ == '__main__':
     app.run()
+    
+@app.route('/write_ok.php', methods=['POST'])
+def write_ok():
+    # write_ok.php를 실행합니다.
+    return os.system('php write_ok.php')
+
