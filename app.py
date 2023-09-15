@@ -13,6 +13,10 @@ def static_file():
 @app.route('/login.html')
 def login():
     return render_template('login.html')
+    
+@app.route('/write.html')
+def login():
+    return render_template('write.html')
 
 @app.route('/feed.html')
 def feed():
