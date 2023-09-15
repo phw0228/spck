@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', data_list=data_list)
 
 @app.route('/static/css/idxsty.css')
 def static_file():
@@ -41,3 +41,17 @@ def index_post():
 
 if __name__ == '__main__':
     app.run()
+
+import pymysql
+
+db = pymysql.connect(host="localhost", user="root", passwd="0228", db="board", charset="utf8")
+cur = db.cursor()
+
+sql = "SELECT * from board"
+cur.execute(sql)
+
+data_list = cur.fetchall()
+
+print(data_list[0])
+print(data_list[1])
+print(data_list[2])

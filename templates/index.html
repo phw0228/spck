@@ -31,12 +31,14 @@
         </thead>
         <tbody>
           <!-- 게시글 목록을 여기에 출력합니다. -->
+          {% for i in data_list %}
           <tr>
-            <td>1</td>
-            <td>제목1</td>
-            <td>작성자1</td>
-            <td>2023-09-14</td>
+            <td>{{ i[0] }}</td>
+            <td>{{ i[1] }}</td>
+            <td>{{ i[2] }}</td>
+            <td>{{ i[3] }}</td>
           </tr>
+          {% endfor %}
           <tr>
             <td>2</td>
             <td>제목2</td>
